@@ -1,6 +1,8 @@
 package microservices.book.multiplication.service;
 
 import microservices.book.multiplication.domain.Multiplication;
+import microservices.book.multiplication.domain.MultiplicationResultAttempt;
+import microservices.book.multiplication.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -18,7 +20,7 @@ public class MultiplicationServiceImplTest {
 
   @BeforeEach
   public void setUp() {
-    // 목 객체를 초기화합니다.
+    // initMocks 를 호출해 Mockito 가 어노테이션을 처리하도록 지시
     MockitoAnnotations.initMocks(this);
     multiplicationServiceImpl = new MultiplicationServiceImpl(randomGeneratorService);
   }
@@ -34,6 +36,33 @@ public class MultiplicationServiceImplTest {
     // assert
     assertThat(multiplication.getFactorA()).isEqualTo(50);
     assertThat(multiplication.getFactorB()).isEqualTo(30);
-    assertThat(multiplication.getResult()).isEqualTo(1500);
+  }
+
+  @Test
+  public void checkCorrectAttemptTest() {
+    // given
+    Multiplication multiplication = new Multiplication(50, 60);
+    User user = new User("john_doe");
+    MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3000);
+
+    // when
+    boolean attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
+
+    // then
+    assertThat(attemptResult).isTrue();
+  }
+
+  @Test
+  public void checkWrongAttemptTest() {
+    // given
+    Multiplication multiplication = new Multiplication(50, 60);
+    User user = new User("john_doe");
+    MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3010);
+
+    // when
+    boolean attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
+
+    // then
+    assertThat(attemptResult).isFalse();
   }
 }

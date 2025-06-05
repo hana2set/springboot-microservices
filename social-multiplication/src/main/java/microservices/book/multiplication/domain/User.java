@@ -1,14 +1,10 @@
 package microservices.book.multiplication.domain;
 
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 
 /**
  * 사용자 정보를 저장하는 클래스
@@ -18,6 +14,7 @@ import jakarta.persistence.Id;
 @ToString
 @EqualsAndHashCode
 @Entity
+@Table(name = "users")
 public final class User {
 
   @Id

@@ -35,7 +35,7 @@ public class GameServiceImplTest {
   @BeforeEach
   public void setUp() {
     // initMocks 를 호출해 Mockito 가 어노테이션을 처리하도록 지시
-    MockitoAnnotations.initMocks(this);
+    MockitoAnnotations.openMocks(this);
     gameService = new GameServiceImpl(scoreCardRepository, badgeCardRepository, multiplicationClient);
 
     // given - 기본적으로 행운의 숫자를 포함하지 않는 답안

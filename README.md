@@ -8,6 +8,7 @@ https://github.com/wikibook/springboot-microservices/tree/master/microservices-v
   - @MockBean -> @MockitoBean
 - User h2테이블명 = Users
 - spring.datasource.username=sa 추가 (없으면 h2-console 접근 불가)
+- findOne -> findById(resultId).orElse(null)
 
 
 --- 

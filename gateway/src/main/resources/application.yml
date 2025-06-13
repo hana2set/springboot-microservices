@@ -1,0 +1,31 @@
+server:
+  port: 8000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: multiplications
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/multiplications/**
+          filters:
+            - StripPrefix=1
+        - id: results
+          uri: http://localhost:8080/results
+          predicates:
+            - Path=/api/results/**
+          filters:
+            - StripPrefix=1
+        - id: leaders
+          uri: http://localhost:8081/leaders
+          predicates:
+            - Path=/api/leaders/**
+          filters:
+            - StripPrefix=1
+        - id: stats
+          uri: http://localhost:8081/stats
+          predicates:
+            - Path=/api/stats/**
+          filters:
+            - StripPrefix=1

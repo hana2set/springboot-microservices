@@ -28,6 +28,10 @@ spring:
             - Path=/api/multiplications/**
           filters:
             - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: myServiceCircuitBreaker
+                fallbackUri: forward:/fallback/my-service
         - id: results
           uri: lb://social-multiplication/results
           predicates:

@@ -1,6 +1,9 @@
 스프링 부트를 활용한 마이크로서비스 개발, 모이세스 메이세로 지음  
 https://github.com/wikibook/springboot-microservices/tree/master/microservices-v1/social-multiplication
 
+## 아키텍처
+![image](https://github.com/user-attachments/assets/fd294f18-e5d9-430c-8f95-d7355c686029)
+
 ## 변경사항
 - maven -> gradle
 - Java8 -> Java17
